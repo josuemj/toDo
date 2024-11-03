@@ -5,3 +5,41 @@
   text-align: center;
   display: flex;
 }
+
+.appContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.addTaskInput{
+  width: 800px;
+  height: 100;
+  border-radius: 50px;
+}
+
+.inputContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.addTaskButton{
+  border-radius: 50px;
+  width: 80px;
+  height: 80px;
+}
+
+.tasksContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.taskContainer{
+  display: flex;
+  flex-direction: column;
+  background-color: #9C9CD7;
+  width: 640px;
+  height: 617px;
+  border-radius: 20px;
+  margin: 2rem;
+}

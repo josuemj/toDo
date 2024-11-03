@@ -1,5 +1,6 @@
 import { SetStateAction, useReducer, useState } from "react";
 import "./App.css";
+import PendingTask from "./components/pendingItem";
 
 function App() {
   const [inputTask, setInputTask] = useState<string>("");
@@ -36,7 +37,7 @@ function App() {
             pending
 
             {pendingList.map( (task, index) => (
-              <li key={index}>{task}</li>
+              <PendingTask pendingTask={task} />
             ))}
           </div>
           <div className="taskContainer">Completed</div>

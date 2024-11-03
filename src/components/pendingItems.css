@@ -1,0 +1,4 @@
+.pendingItem {
+    display: flex;
+    justify-content: space-between;
+}

@@ -18,21 +18,38 @@ function App() {
     setInputTask(event.target.value);
   };
 
+  //Add the task to pending task
   const onAddTask = () => {
     const newTask: Task = {
-      id: Date.now(), // Unique ID based on timestamp
+      id: Date.now(),
       text: inputTask.trim(),
     };
     setPendingList([...pendingList, newTask]);
     setInputTask("");
   };
 
+  //Deletes the task from pending (not completed)
   const deleteTask = (id: number) => {
     const updatedList = pendingList.filter((task) => task.id !== id);
     setPendingList(updatedList);
   };
 
-  const completeTask = () => {};
+  //Pass the taks to completed task
+  const completeTask = (id: number) => {
+
+    const selectedTask =  pendingList.filter((task) => task.id == id);
+
+    const completedTask: Task = {
+      id: Date.now(),
+      text: selectedTask[0].text.trim(),
+    };
+
+    const updatedList = pendingList.filter((task) => task.id !== id);
+    setPendingList(updatedList);
+
+    setCompletedList([...completedList, completedTask])
+  };
+
   return (
     <>
       <div className="appContainer">
@@ -61,7 +78,19 @@ function App() {
               />
             ))}
           </div>
-          <div className="taskContainer">Completed</div>
+          <div className="taskContainer">Completed
+
+            {
+              completedList.map((task, index) => (
+                <PendingTask
+                  key={task.id}
+                  pendingTask={task}
+                  onDelete={deleteTask}
+                  onComplete={completeTask}
+                />
+              ))
+            }
+          </div>
         </div>
       </div>
     </>

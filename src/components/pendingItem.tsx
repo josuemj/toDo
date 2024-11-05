@@ -1,19 +1,35 @@
-import React from 'react';
-import './pendingItems.css'
-interface pendingTask{
-  pendingTask : string
+import React from "react";
+import "./pendingItems.css";
+// PendingTask.tsx
+
+interface Task {
+  id: number;
+  text: string;
 }
 
-const PendingTask: React.FC<pendingTask> = ({pendingTask}) => {
-  return(
+interface PendingTaskProps {
+  pendingTask: Task;
+  onDelete: (id: number) => void;
+  onComplete: (id: number) => void;
+}
+
+const PendingTask: React.FC<PendingTaskProps> = ({
+  pendingTask,
+  onDelete,
+  onComplete,
+}) => {
+  return (
     <>
-    <div className='pendingItem'>
-      <button></button>
-      <h3>{pendingTask}</h3>
-      <button></button>
-    </div>
+      <div className="pendingItem">
+        <button
+          className="deleteTask"
+          onClick={() => onDelete(pendingTask.id)}
+        ></button>
+        <h3>{pendingTask.text}</h3>
+        <button className="taskDoneButton">done</button>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default PendingTask
+export default PendingTask;

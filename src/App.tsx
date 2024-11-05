@@ -2,9 +2,15 @@ import { SetStateAction, useReducer, useState } from "react";
 import "./App.css";
 import PendingTask from "./components/pendingItem";
 
+interface Task {
+  id: number;
+  text: string;
+}
+
 function App() {
   const [inputTask, setInputTask] = useState<string>("");
-  const [pendingList, setPendingList] = useState<string[]>([]);
+  const [completedList, setCompletedList] = useState<Task[]>([]);
+  const [pendingList, setPendingList] = useState<Task[]>([]);
 
   const handleInputChange = (event: {
     target: { value: SetStateAction<string> };
@@ -13,9 +19,20 @@ function App() {
   };
 
   const onAddTask = () => {
-    setPendingList([...pendingList, inputTask])
+    const newTask: Task = {
+      id: Date.now(), // Unique ID based on timestamp
+      text: inputTask.trim(),
+    };
+    setPendingList([...pendingList, newTask]);
+    setInputTask("");
   };
 
+  const deleteTask = (id: number) => {
+    const updatedList = pendingList.filter((task) => task.id !== id);
+    setPendingList(updatedList);
+  };
+
+  const completeTask = () => {};
   return (
     <>
       <div className="appContainer">
@@ -35,9 +52,13 @@ function App() {
         <div className="tasksContainer">
           <div className="taskContainer">
             pending
-
-            {pendingList.map( (task, index) => (
-              <PendingTask pendingTask={task} />
+            {pendingList.map((task, index) => (
+              <PendingTask
+                key={task.id}
+                pendingTask={task}
+                onDelete={deleteTask}
+                onComplete={completeTask}
+              />
             ))}
           </div>
           <div className="taskContainer">Completed</div>

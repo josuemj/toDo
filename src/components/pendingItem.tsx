@@ -21,12 +21,18 @@ const PendingTask: React.FC<PendingTaskProps> = ({
   return (
     <>
       <div className="pendingItem">
-        <button
-          className="deleteTask"
-          onClick={() => onDelete(pendingTask.id)}
-        >del</button>
+        <button className="deleteTask" onClick={() => onDelete(pendingTask.id)}>
+          del
+        </button>
         <h3>{pendingTask.text}</h3>
-        <button className="taskDoneButton" onClick={() => {onComplete(pendingTask.id)}}>done</button>
+        <button
+          className="taskDoneButton"
+          onClick={() => {
+            onComplete(pendingTask.id);
+          }}
+        >
+          done
+        </button>
       </div>
     </>
   );

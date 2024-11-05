@@ -1,6 +1,7 @@
 import { SetStateAction, useReducer, useState } from "react";
 import "./App.css";
 import PendingTask from "./components/pendingItem";
+import CompletedTask from "./components/completedItems";
 
 interface Task {
   id: number;
@@ -25,7 +26,7 @@ function App() {
       text: inputTask.trim(),
     };
     setPendingList([...pendingList, newTask]);
-    setInputTask("");
+    // setInputTask("");
   };
 
   //Deletes the task from pending (not completed)
@@ -36,8 +37,7 @@ function App() {
 
   //Pass the taks to completed task
   const completeTask = (id: number) => {
-
-    const selectedTask =  pendingList.filter((task) => task.id == id);
+    const selectedTask = pendingList.filter((task) => task.id == id);
 
     const completedTask: Task = {
       id: Date.now(),
@@ -47,7 +47,12 @@ function App() {
     const updatedList = pendingList.filter((task) => task.id !== id);
     setPendingList(updatedList);
 
-    setCompletedList([...completedList, completedTask])
+    setCompletedList([...completedList, completedTask]);
+  };
+
+  const deleteCompletedTask = (id: number) => {
+    const updatedList = completedList.filter((task) => task.id !== id);
+    setCompletedList(updatedList);
   };
 
   return (
@@ -69,7 +74,7 @@ function App() {
         <div className="tasksContainer">
           <div className="taskContainer">
             pending
-            {pendingList.map((task, index) => (
+            {pendingList.map((task) => (
               <PendingTask
                 key={task.id}
                 pendingTask={task}
@@ -78,18 +83,15 @@ function App() {
               />
             ))}
           </div>
-          <div className="taskContainer">Completed
-
-            {
-              completedList.map((task, index) => (
-                <PendingTask
-                  key={task.id}
-                  pendingTask={task}
-                  onDelete={deleteTask}
-                  onComplete={completeTask}
-                />
-              ))
-            }
+          <div className="taskContainer">
+            Completed
+            {completedList.map((task) => (
+              <CompletedTask
+                key={task.id}
+                completedTask={task}
+                onDelete={deleteCompletedTask}
+              />
+            ))}
           </div>
         </div>
       </div>

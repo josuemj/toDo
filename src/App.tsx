@@ -26,7 +26,7 @@ function App() {
       text: inputTask.trim(),
     };
     setPendingList([...pendingList, newTask]);
-    // setInputTask("");
+    setInputTask("");
   };
 
   //Deletes the task from pending (not completed)
@@ -55,6 +55,11 @@ function App() {
     setCompletedList(updatedList);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onAddTask();
+    }
+  };
   return (
     <>
       <div className="appContainer">
@@ -63,9 +68,11 @@ function App() {
         <div className="inputContainer">
           <div className="inputWrapper">
             <input
+              value={inputTask}
               className="addTaskInput"
               placeholder="Add Task"
               onChange={handleInputChange}
+              onKeyDown={handleKeyPress}
             ></input>
             <button className="addTaskButton" onClick={onAddTask}>
               <h1>+</h1>

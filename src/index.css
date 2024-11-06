@@ -1,5 +1,10 @@
 :root {
-  background-color: #747bff;
+  background: rgb(74, 116, 212);
+  background: linear-gradient(
+    180deg,
+    rgba(74, 116, 212, 1) 0%,
+    rgba(119, 132, 152, 1) 100%
+  );
 }
 
 body {
@@ -9,7 +14,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
-
 
 @media (prefers-color-scheme: light) {
   :root {

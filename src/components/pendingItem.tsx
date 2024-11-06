@@ -1,4 +1,7 @@
 import React from "react";
+import { FaTrashCan } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa";
+
 import "./pendingItems.css";
 // PendingTask.tsx
 
@@ -22,16 +25,16 @@ const PendingTask: React.FC<PendingTaskProps> = ({
     <>
       <div className="pendingItem">
         <button className="deleteTask" onClick={() => onDelete(pendingTask.id)}>
-          del
+          <FaTrashCan />
         </button>
-        <h3>{pendingTask.text}</h3>
+        <h3 className="taskText">{pendingTask.text}</h3>
         <button
           className="taskDoneButton"
           onClick={() => {
             onComplete(pendingTask.id);
           }}
         >
-          done
+          <FaCheck />
         </button>
       </div>
     </>

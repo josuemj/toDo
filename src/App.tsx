@@ -1,4 +1,4 @@
-import { SetStateAction, useReducer, useState } from "react";
+import { SetStateAction, useState } from "react";
 import "./App.css";
 import PendingTask from "./components/pendingItem";
 import CompletedTask from "./components/completedItems";
@@ -58,22 +58,24 @@ function App() {
   return (
     <>
       <div className="appContainer">
-        <h1>ToDo</h1>
+        <h1 className="appTitle">ToDo</h1>
 
         <div className="inputContainer">
-          <input
-            className="addTaskInput"
-            placeholder="Add Task"
-            onChange={handleInputChange}
-          ></input>
-          <button className="addTaskButton" onClick={onAddTask}>
-            <h1>+</h1>
-          </button>
+          <div className="inputWrapper">
+            <input
+              className="addTaskInput"
+              placeholder="Add Task"
+              onChange={handleInputChange}
+            ></input>
+            <button className="addTaskButton" onClick={onAddTask}>
+              <h1>+</h1>
+            </button>
+          </div>
         </div>
 
         <div className="tasksContainer">
           <div className="taskContainer">
-            pending
+            <p className="containerTitle">Pending</p>
             {pendingList.map((task) => (
               <PendingTask
                 key={task.id}
@@ -84,7 +86,7 @@ function App() {
             ))}
           </div>
           <div className="taskContainer">
-            Completed
+            <p className="containerTitle">Completed</p>
             {completedList.map((task) => (
               <CompletedTask
                 key={task.id}

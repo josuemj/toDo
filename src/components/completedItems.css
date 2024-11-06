@@ -1,18 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Honk&family=Jersey+10&family=Proza+Libre:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 
-.pendingItem {
-  display: flex;
-  justify-content: space-between;
-  width: 573px;
-  height: 60px;
-  background-color: #f2f2f5;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-}
-
-.deleteTask,
-.taskDoneButton {
+.deleteTask {
   background: transparent;
   border: transparent;
   cursor: pointer;
@@ -25,12 +13,19 @@
   transform: scale(1.3);
 }
 
-.taskDoneButton:hover {
-  color: #32cd32;
-  transform: scale(1.3);
+.completedItem {
+  display: flex;
+  width: 573px;
+  height: 60px;
+  background-color: #f2f2f5;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.taskText {
+.taskText{
   font-family: "Roboto Mono", monospace;
   font-size: 20px;
 }

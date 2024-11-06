@@ -1,5 +1,7 @@
 import React from "react";
-import "./pendingItems.css";
+import "./completedItems.css";
+import { FaTrashCan } from "react-icons/fa6";
+
 // PendingTask.tsx
 
 interface Task {
@@ -13,16 +15,19 @@ interface CompletedTaskProps {
 }
 
 const CompletedTask: React.FC<CompletedTaskProps> = ({
-    completedTask,
+  completedTask,
   onDelete,
 }) => {
   return (
     <>
-      <div className="pendingItem">
-        <button className="deleteTask" onClick={() => onDelete(completedTask.id)}>
-          del
+      <div className="completedItem">
+        <button
+          className="deleteTask"
+          onClick={() => onDelete(completedTask.id)}
+        >
+          <FaTrashCan />
         </button>
-        <h3>{completedTask.text}</h3>
+        <h3 className="taskText">{completedTask.text}</h3>
       </div>
     </>
   );
